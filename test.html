@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+<body>
+    <button type="button" id="myButton">ClickMe</button>
+
+    <hr>
+    <h5>Data on storage</h5>
+    <button id="getData" onclick="GetData()">Get</button>
+    <button id="setData" onclick="SaveData()">Save</button>
+    <button id="deleteData" onclick="DeleteData()">Delete</button>
+
+    <hr>
+    <h4>Get data from PokeAPI</h4>
+    <button onclick="GetPokemonData()">Get data</button>
+    <div id="result">
+
+    </div>
+
+
+    <script>
+        document.getElementById("myButton").addEventListener('click',
+            () => {
+                alert('Hello World');
+            }
+        )
+
+        function SaveData() {
+            localStorage.setItem("name", "Jesus");
+            localStorage.setItem("token", "whefgwehfewhegbfrkweh");
+            console.log("data saved to local storage"); 
+        }
+
+        function GetData() {
+            let name = localStorage.getItem("name");
+            let token = localStorage.getItem("token");
+            if(name && name != null && token && token != null) {
+                console.log(`User ${name} with token ${token}`);
+            } else {
+                console.log("data not found on storage");
+            }
+        }
+
+        function DeleteData() {
+            localStorage.removeItem("name");
+            localStorage.removeItem("token");
+            console.log("data deleted from storage");
+        }
+
+        function GetPokemonData() {
+            let url = "https://pokeapi.co/api/v2/pokemon/ditto";
+            let resultEl = document.getElementById("result");
+            const response = fetch(url);
+            response.then((result) => {
+                result.json().
+                    then((data) => {
+                        console.log(data);
+                        let dataString = JSON.stringify(data);
+                        resultEl.innerHTML = dataString;
+                    }).
+                    catch((e) => {
+                        let errEl = `<span style="color: red;">Error fetching data from service: ${e}</span>`
+                        resultEl.innerHTML = errEl;
+                    });
+                
+            }).catch((e) => {
+                let errEl = `<span style="color: red;">Error fetching data from service: ${e}</span>`
+                resultEl.innerHTML = errEl;
+            });
+        }
+    </script>
+</body>
+</html>

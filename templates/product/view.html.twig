@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for prod in products %}
+        <h3>ID: {{ prod.id }}</h3>
+        <h3>Name: {{ prod.name }}</h3>
+        <h3>Price: {{ prod.price }}</h3>
+        <h3>Count: {{ prod.count }}</h3>
+        <hr>
+    {% endfor %}
+   
+{% endblock %}
