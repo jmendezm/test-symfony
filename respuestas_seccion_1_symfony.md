@@ -50,6 +50,9 @@
 8. **Pregunta Teórica:**
 - ¿Qué es el Event Dispatcher en Symfony y para qué se utiliza?
 
+    **Respuesta**
+    > El EventDispatcher es un componente de Symfony que permite la comunicación entre componentes mediante el patrón publish/subscribe y el paso de eventos.
+
 9. **Pregunta de Código:**
 - Crea un validador personalizado en Symfony para asegurar que el campo email de una entidad User no pertenece a un dominio específico (por ejemplo, "example.com"). Muestra cómo configurar este validador y cómo sería utilizado en la entidad User.
 
